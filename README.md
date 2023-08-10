@@ -1,2 +1,0 @@
-# hide-titles
-WordPress Plugin
