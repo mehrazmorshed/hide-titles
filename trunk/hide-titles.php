@@ -127,34 +127,10 @@ function hide_titles_create_page() {
     <?php
 }
 
-
-
-
-
-
-
-
+if( get_option( 'hide-titles-option' ) == 'true' ) {
 // Hide all titles
-function hide_titles() {
-    return false;
-}
-add_filter('the_title', 'hide_titles');
-
-// Register activation Hook
-function hide_titles_activation_hook() {
-    set_transient( 'hide-titles-notification', true, 5 );
-}
-register_activation_hook( __FILE__, 'hide_titles_activation_hook' );
-
-// Activation notification
-function hide_titles_activation_notification(){
-    if( get_transient( 'hide-titles-notification' ) ) {
-        ?>
-        <div class="updated notice is-dismissible">
-            <p><?php esc_attr_e( 'Thank you for installing Hide Titles!', 'hide-titles' ); ?></p>
-        </div>
-        <?php
-        delete_transient( 'hide-titles-notification' );
+    function hide_titles() {
+        return false;
     }
+    add_filter('the_title', 'hide_titles');
 }
-add_action( 'admin_notices', 'hide_titles_activation_notification' );
