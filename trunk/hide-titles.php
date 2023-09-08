@@ -1,18 +1,19 @@
 <?php
 
 /*
- * Plugin Name:       Hide Titles
- * Plugin URI:        https://wordpress.org/plugins/hide-titles/
- * Description:       Hide Titles of all Posts and Pages
- * Version:           1.1
- * Requires at least: 5.2
- * Requires PHP:      7.2
- * Author:            Mehraz Morshed
- * Author URI:        https://profiles.wordpress.org/mehrazmorshed/
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       hide-titles
- * Domain Path:       /languages
+ * Plugin Name:         Hide Titles
+ * Plugin URI:          https://wordpress.org/plugins/hide-titles/
+ * Description:         Hide Titles from all Posts and Pages of your Website.
+ * Version:             1.2
+ * Requires at least:   5.2
+ * Requires PHP:        7.2
+ * Tested up to:        6.3.1
+ * Author:              Mehraz Morshed
+ * Author URI:          https://profiles.wordpress.org/mehrazmorshed/
+ * License:             GPL v2 or later
+ * License URI:         https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:         hide-titles
+ * Domain Path:         /languages
  */
 
 /**
