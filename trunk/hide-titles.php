@@ -42,6 +42,27 @@ function hide_titles_load_textdomain() {
 }
 add_action( 'init', 'hide_titles_load_textdomain' );
 
+function hide_titles_option_page() {
+
+    add_menu_page( 'Hide Titles Option', 'Hide Titles', 'manage_options', 'hide-titles', 'hide_titles_create_page', 'dashicons-admin-plugins', 101 );
+}
+add_action( 'admin_menu', 'hide_titles_option_page' );
+
+function hide_titles_style_settings() {
+
+    wp_enqueue_style( 'hide-titles-settings', plugins_url( 'css/hide-titles-settings.css', __FILE__ ), false, "1.0.0" );
+}
+add_action( 'admin_enqueue_scripts', 'hide_titles_style_settings' );
+
+
+
+
+
+
+
+
+
+
 // Hide all titles
 function hide_titles() {
     return false;
