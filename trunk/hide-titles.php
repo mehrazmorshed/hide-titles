@@ -54,7 +54,78 @@ function hide_titles_style_settings() {
 }
 add_action( 'admin_enqueue_scripts', 'hide_titles_style_settings' );
 
+function hide_titles_create_page() {
+    ?>
+    <div class="hide_titles_main">
+        <div class="hide_titles_body hide_titles_common">
+            <h1 id="page-title"><?php esc_attr_e( 'Hide Titles Settings', 'hide-titles' ); ?></h1>
+            <form action="options.php" method="post">
+                <?php wp_nonce_field( 'update-options' ); ?>
 
+                <!-- Hide Titles -->
+                <label for="hide-titles-option"><?php esc_attr_e( 'Hide Titles Option', 'hide-titles' ); ?></label>
+
+                <label class="radios">
+                    <input type="radio" name="hide-titles-option" id="hide-titles-option-no" value="false" <?php if( get_option( 'hide-titles-option' ) == 'false' ) { echo 'checked="checked"'; } ?>>
+                    <span><?php _e( 'Do Not Hide', 'hide-titles' ); ?></span>
+                </label>
+
+                <label class="radios">
+                    <input type="radio" name="hide-titles-option" id="hide-titles-option-yes" value="true" <?php if( get_option( 'hide-titles-option' ) == 'true' ) { echo 'checked="checked"'; } ?>>
+                    <span><?php _e( 'Hide All', 'hide-titles' ); ?></span>
+                </label>
+
+                <!--  -->
+                <input type="hidden" name="action" value="update">
+                <input type="hidden" name="page_options" value="hide-titles-option">
+                <br>
+                <input class="button button-primary" type="submit" name="submit" value="<?php _e( 'Save Changes', 'hide-titles' ) ?>">
+            </form>
+        </div>
+        <div class="hide_titles_aside hide_titles_common">
+            <!-- about plugin author -->
+            <h2 class="aside-title"><?php esc_attr_e( 'About Plugin Author', 'hide-titles' ); ?></h2>
+            <div class="author-card">
+                <a class="link" href="https://profiles.wordpress.org/mehrazmorshed/" target="_blank">
+                    <img class="center" src="<?php print plugin_dir_url( __FILE__ ) . '/img/author.png'; ?>" width="128px">
+                    <h3 class="author-title"><?php esc_attr_e( 'Mehraz Morshed', 'hide-titles' ); ?></h3>
+                    <h4 class="author-title"><?php esc_attr_e( 'WordPress Developer', 'hide-titles' ); ?></h4>
+                </a>
+                <h1 class="author-title">
+                    <a class="link" href="https://www.facebook.com/mehrazmorshed" target="_blank"><span class="dashicons dashicons-facebook"></span></a>
+                    <a class="link" href="https://twitter.com/mehrazmorshed" target="_blank"><span class="dashicons dashicons-twitter"></span></a>
+                    <a class="link" href="https://www.linkedin.com/in/mehrazmorshed" target="_blank"><span class="dashicons dashicons-linkedin"></span></a>
+                    <a class="link" href="https://www.youtube.com/@mehrazmorshed" target="_blank"><span class="dashicons dashicons-youtube"></span></a>
+                </h1>
+            </div>
+            <!-- other useful plugins -->
+            <h3 class="aside-title"><?php esc_attr_e( 'Other Useful Plugins', 'hide-titles' ); ?></h3>
+            <div class="author-card">
+                <a class="link" href="https://wordpress.org/plugins/turn-off-comments/" target="_blank">
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Turn Off Comments', 'hide-titles' ) ?></b>
+                </a>
+                <hr>
+                <a class="link" href="https://wordpress.org/plugins/hide-admin-navbar/" target="_blank">
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Hide Admin Navbar', 'hide-titles' ) ?></b>
+                </a>
+                <hr>
+                <a class="link" href="https://wordpress.org/plugins/tap-to-top/" target="_blank">
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Tap To Top', 'hide-titles' ) ?></b>
+                </a>
+                <hr>
+                <a class="link" href="https://wordpress.org/plugins/customized-login/" target="_blank">
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Custom Login Page', 'hide-titles' ) ?></b>
+                </a>
+            </div>
+            <!-- donate to this plugin -->
+            <h3 class="aside-title"><?php esc_attr_e( 'Hide Titles', 'hide-titles' ); ?></h3>
+            <a class="link" href="https://www.buymeacoffee.com/mehrazmorshed" target="_blank">
+                <button class="button button-primary btn"><?php esc_attr_e( 'Donate To This Plugin', 'hide-titles' ); ?></button>
+            </a>
+        </div>
+    </div>
+    <?php
+}
 
 
 
