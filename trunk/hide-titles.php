@@ -134,3 +134,24 @@ if( get_option( 'hide-titles-option' ) == 'true' ) {
     }
     add_filter('the_title', 'hide_titles');
 }
+
+function hide_titles_plugin_activation() {
+
+    add_option( 'hide_titles_plugin_do_activation_redirect', true );
+}
+register_activation_hook( __FILE__, 'hide_titles_plugin_activation' );
+
+function hide_titles_plugin_redirect() {
+
+    if( get_option( 'hide_titles_plugin_do_activation_redirect', false ) ) {
+
+        delete_option( 'hide_titles_plugin_do_activation_redirect' );
+
+        if ( !isset( $_GET['active-multi'] ) ) {
+
+            wp_safe_redirect( admin_url( 'admin.php?page=hide-titles' ) );
+            exit;
+        }
+    }
+}
+add_action( 'admin_init', 'hide_titles_plugin_redirect' );
