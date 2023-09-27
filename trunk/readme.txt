@@ -1,10 +1,10 @@
-=== Hide Titles ===
+=== Hide Page and Post Title ===
 Contributors: mehrazmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
 Tags: hide title, remove title, disable title, hide titles, remove titles, disable titles
 Requires at least: 5.2
-Tested up to: 6.3
-Stable tag: 1.1
+Tested up to: 6.3.1
+Stable tag: 1.4
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -52,10 +52,28 @@ Just deactivate the plugin.
 
 == Changelog ==
 
-= 1.0 =
-*Release Date - 14 March 2023*
+= 1.4.0 =
+*Release Date - 25 September 2023*
 
-= 1.1 =
+* Optimized Codes
+
+= 1.3.0 =
+*Release Date - 15 September 2023*
+
+* Added New Setting Options
+
+= 1.2.0 =
+*Release Date - 7 September 2023*
+
+* Integrated Plugin Settings
+* Tested with version 6.3.1
+
+= 1.1.0 =
 *Release Date - 9 August 2023*
+
+* Tested with version 6.3
+
+= 1.0.0 =
+*Release Date - 14 March 2023*
 
 * Initial release.
