@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Plugin Name:         Hide Page and Post Title
+ * Plugin Name:         Hide Titles - Remove Title from Post and Page
  * Plugin URI:          https://wordpress.org/plugins/hide-titles/
- * Description:         Hide Titles from all Posts and Pages of your Website.
- * Version:             1.4
- * Requires at least:   5.2
- * Requires PHP:        7.2
+ * Description:         Remove Titles from Posts and Single Pages on WordPress.
+ * Version:             1.4.4
+ * Requires at least:   4.4
+ * Requires PHP:        7.0
  * Tested up to:        6.3.1
  * Author:              Mehraz Morshed
  * Author URI:          https://profiles.wordpress.org/mehrazmorshed/
@@ -17,18 +17,18 @@
  */
 
 /**
- * Hide Page and Post Titles is free software: you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your 
- * option) any later version.
+ * Hide Titles is free software: you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License 
+ * as published by the Free Software Foundation, either version 3 
+ * of the License, or (at your option) any later version.
  * 
- * Hide Page and Post Titles is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
- * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for 
- * more details.
+ * Hide Titles is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * GNU General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License along with 
- * this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License 
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // Exit if accessed directly
