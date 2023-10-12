@@ -1,19 +1,27 @@
-=== Hide Page and Post Title ===
+=== Hide Titles - Remove Title from Post and Page ===
 Contributors: mehrazmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
-Tags: hide title, remove title, disable title, hide titles, remove titles, disable titles
-Requires at least: 5.2
+Tags: hide title, hide post title, hide page title, hide single post title, hide titles
+Requires at least: 4.4
 Tested up to: 6.3.1
-Stable tag: 1.4
-Requires PHP: 7.2
+Stable tag: 1.4.4
+Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Hide Titles of all Posts and Pages
+Remove Titles from Posts and Single Pages on WordPress.
 
 == Description ==
 
-This plugin allows you to hide titles of all posts and pages of your website
+'Hide Titles' is a lightweight and user-friendly tool that allows you to control over the visibility of titles of pages and single posts on your WordPress website.
+
+Whether you want to show or hide titles, 'Hide Titles' has got you covered.
+
+== Features ==
+
+* hide post title
+* hide page title
+* hide all titles
 
 == Installation ==
 
@@ -42,38 +50,52 @@ Install the Hide Titles plugin via WordPress Dashboard (from plugin directory or
 
 == Frequently Asked Questions ==
 
-= How to hide titles of all posts and pages? =
+= How to hide titles from pages and single posts? =
 
-Activate the plugin. That's it.
+Activate the plugin, go to plugin settings page and choose your option and click on 'Save Changes' button.
 
-= How to get titles of all posts and pages back? =
+= How to get back titles in pages and single post? =
 
-Just deactivate the plugin.
+Go to plugin settings page, choose 'Don't Hide' option and click on 'Save Changes' button and you've done!
+
+== Recommended Products ==
+
+We recommend exploring certain plugins and extensions that could capture your interest. Feel free to discover additional projects by clicking on this link:
+
+<strong>[CoDesigner](https://wordpress.org/plugins/woolementor/)</strong>
+CoDesigner (formerly known as Woolementor) is the best solution to connect the world's leading page builder plugin, Elementor, with the most popular eCommerce plugin, WooCommerce. CoDesigner empowers you with a collection of specialized Elementor widgets tailored for WooCommerce, allowing you to enjoy absolute control over every aspect of your WooCommerce website. CoDesigner (Woolementor) stands out as the top choice when considering alternatives to ShopReady, Kadence, JetWidgets, ShopEngine, and ShopLentor (WooLentor).
+
+<strong>[WC Affiliate](https://wordpress.org/plugins/wc-affiliate/)</strong>
+If you are planning to launch an affiliate program for your WooCommerce store, WC Affiliate is the best solution as a full-fledged Affiliate Manager for WooCommerce. Launching an affiliate program gives you extraordinary sales growth if it is done properly. Using WC Affiliate you can launch a WordPress affiliate program on your WooCommerce-based store within minutes without hiring a developer! WC Affiliate is becoming the standout choice when exploring alternatives to WooCommerce Affiliate Plugin - Coupon Affiliates, YITH WooCommerce Affiliates, PW WooCommerce Affiliates, Affiliates WooCommerce Light, etc.
+
+== Screenshots ==
+
+1. screenshot-1.png
 
 == Changelog ==
 
-= 1.4.0 =
+= 1.4 =
 *Release Date - 25 September 2023*
 
 * Optimized Codes
 
-= 1.3.0 =
+= 1.3 =
 *Release Date - 15 September 2023*
 
 * Added New Setting Options
 
-= 1.2.0 =
+= 1.2 =
 *Release Date - 7 September 2023*
 
 * Integrated Plugin Settings
 * Tested with version 6.3.1
 
-= 1.1.0 =
+= 1.1 =
 *Release Date - 9 August 2023*
 
 * Tested with version 6.3
 
-= 1.0.0 =
+= 1.0 =
 *Release Date - 14 March 2023*
 
 * Initial release.
