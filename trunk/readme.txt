@@ -1,10 +1,10 @@
-=== Hide Titles - Remove Title from Post and Page ===
+=== Hide Titles – Simple Hide Title Plugin, Hide Page And Post Title ===
 Contributors: mehrazmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
-Tags: hide title, hide post title, hide page title, hide single post title, hide titles
+Tags: title, hide title, hide page title, hide post title, hide page and post title, hide single post title, title hide
 Requires at least: 4.4
-Tested up to: 6.3.1
-Stable tag: 1.4.4
+Tested up to: 6.4.3
+Stable tag: 1.6.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,16 @@ Activate the plugin, go to plugin settings page and choose your option and click
 
 Go to plugin settings page, choose 'Don't Hide' option and click on 'Save Changes' button and you've done!
 
+== Other Useful Plugins ==
+
+## Turn Off Comments – Disable Comment Box and Hide Comments
+
+The <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> Plugin is a valuable tool for WordPress Websites to remove comment section and hide comments. The <strong>[Turn Off Comments](https://wordpress.org/plugins/turn-off-comments)</strong> WordPress Plugin offers the essential feature of hide comment section that makes easier to disable comment box and protect your website from spamming.
+
+## Hide Titles – Remove Title from Post and Page
+
+<strong>[Hide Titles](https://wordpress.org/plugins/hide-titles)</strong> is a lightweight and user-friendly tool that allows you to control over the visibility of titles of pages and single posts on your WordPress website. Whether you want to show or hide titles, <strong>[Hide Titles](https://wordpress.org/plugins/hide-titles)</strong> has got you covered.
+
 == Recommended Products ==
 
 We recommend exploring certain plugins and extensions that could capture your interest. Feel free to discover additional projects by clicking on this link:
@@ -73,6 +83,17 @@ If you are planning to launch an affiliate program for your WooCommerce store, W
 1. screenshot-1.png
 
 == Changelog ==
+
+= 1.6 =
+*Release Date - 8 February 2024*
+
+* Added New Feature
+* Tested with version 6.4.3
+
+= 1.5 =
+*Release Date - 7 November 2023*
+
+* Tested with version 6.4
 
 = 1.4 =
 *Release Date - 25 September 2023*
