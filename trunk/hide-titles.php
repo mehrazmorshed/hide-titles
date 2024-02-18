@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name:         Hide Titles - Remove Title from Post and Page
+ * Plugin Name:         Hide Titles – Simple Hide Title Plugin, Hide Page And Post Title
  * Plugin URI:          https://wordpress.org/plugins/hide-titles/
  * Description:         Remove Titles from Posts and Single Pages on WordPress.
- * Version:             1.4.4
+ * Version:             1.6.2
  * Requires at least:   4.4
  * Requires PHP:        7.0
- * Tested up to:        6.3.1
+ * Tested up to:        6.4.3
  * Author:              Mehraz Morshed
  * Author URI:          https://profiles.wordpress.org/mehrazmorshed/
  * License:             GPL v2 or later
@@ -44,7 +44,7 @@ add_action( 'init', 'hide_titles_load_textdomain' );
 
 function hide_titles_option_page() {
 
-    add_menu_page( 'Hide Page and Post Titles Option', 'Hide Page and Post Titles', 'manage_options', 'hide-titles', 'hide_titles_create_page', 'dashicons-admin-plugins', 101 );
+    add_menu_page( 'Hide Titles', 'Hide Titles', 'manage_options', 'hide-titles', 'hide_titles_create_page', 'dashicons-admin-plugins', 101 );
 }
 add_action( 'admin_menu', 'hide_titles_option_page' );
 
@@ -63,34 +63,34 @@ function hide_titles_create_page() {
                 <?php wp_nonce_field( 'update-options' ); ?>
 
                 <!-- Hide Titles -->
-                <label for="hide-titles-option"><?php esc_attr_e( 'Hide Titles Option', 'hide-titles' ); ?></label>
+                <label for="hide-titles-option"><?php esc_attr_e( 'Hide Titles Option:', 'hide-titles' ); ?></label>
 
                 <label class="radios">
                     <input type="radio" name="hide-titles-option" id="hide-titles-option-nothing" value="nothing" <?php if( get_option( 'hide-titles-option' ) == 'nothing' ) { echo 'checked="checked"'; } ?>>
-                    <span><?php _e( 'Don\'t Hide Any Title', 'hide-titles' ); ?></span>
-                </label>
-
-                <label class="radios">
-                    <input type="radio" name="hide-titles-option" id="hide-titles-option-posts" value="posts" <?php if( get_option( 'hide-titles-option' ) == 'posts' ) { echo 'checked="checked"'; } ?>>
-                    <span><?php _e( 'Hide All Post Titles', 'hide-titles' ); ?></span>
-                </label>
-
-                <label class="radios">
-                    <input type="radio" name="hide-titles-option" id="hide-titles-option-pages" value="pages" <?php if( get_option( 'hide-titles-option' ) == 'pages' ) { echo 'checked="checked"'; } ?>>
-                    <span><?php _e( 'Hide All Page Titles', 'hide-titles' ); ?></span>
+                    <span><?php _e( 'Show All Titles', 'hide-titles' ); ?></span>
                 </label>
 
                 <label class="radios">
                     <input type="radio" name="hide-titles-option" id="hide-titles-option-all" value="all" <?php if( get_option( 'hide-titles-option' ) == 'all' ) { echo 'checked="checked"'; } ?>>
-                    <span><?php _e( 'Hide Page and Post Titles', 'hide-titles' ); ?></span>
+                    <span><?php _e( 'Hide All Titles', 'hide-titles' ); ?></span>
                 </label>
 
                 <!--  -->
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="page_options" value="hide-titles-option">
-                <br>
+
                 <input class="button button-primary" type="submit" name="submit" value="<?php _e( 'Save Changes', 'hide-titles' ) ?>">
             </form>
+
+            <br>
+            <hr>
+            <br>
+                <label class="">
+                    <span>
+                        <?php _e( '🎉 New Feature 🎉 Hide Title From Single Post / Page:', 'hide-titles' ); ?>
+                    </span>
+                </label>
+                    <img class="screenshot" src="<?php print plugin_dir_url( __FILE__ ) . '/img/single.png'; ?>">
         </div>
         <div class="hide_titles_aside hide_titles_common">
             <!-- about plugin author -->
@@ -112,19 +112,15 @@ function hide_titles_create_page() {
             <h3 class="aside-title"><?php esc_attr_e( 'Other Useful Plugins', 'hide-titles' ); ?></h3>
             <div class="author-card">
                 <a class="link" href="https://wordpress.org/plugins/turn-off-comments/" target="_blank">
-                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Turn Off Comments', 'hide-titles' ) ?></b>
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Disable Comments', 'hide-titles' ) ?></b>
                 </a>
                 <hr>
                 <a class="link" href="https://wordpress.org/plugins/hide-admin-navbar/" target="_blank">
-                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Hide Admin Navbar', 'hide-titles' ) ?></b>
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Hide Admin Toolbar', 'hide-titles' ) ?></b>
                 </a>
                 <hr>
-                <a class="link" href="https://wordpress.org/plugins/tap-to-top/" target="_blank">
-                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Tap To Top', 'hide-titles' ) ?></b>
-                </a>
-                <hr>
-                <a class="link" href="https://wordpress.org/plugins/customized-login/" target="_blank">
-                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Custom Login Page', 'hide-titles' ) ?></b>
+                <a class="link" href="https://wordpress.org/plugins/about-post-author/" target="_blank">
+                    <span class="dashicons dashicons-admin-plugins"></span> <b><?php _e( 'Simple Author Box', 'hide-titles' ) ?></b>
                 </a>
             </div>
             <!-- donate to this plugin -->
@@ -132,39 +128,14 @@ function hide_titles_create_page() {
             <a class="link" href="https://www.buymeacoffee.com/mehrazmorshed" target="_blank">
                 <button class="button button-primary btn"><?php esc_attr_e( 'Donate To This Plugin', 'hide-titles' ); ?></button>
             </a>
+            <p style="text-align: center;"><b>OR</b></p>
+            <a class="link" href="https://wordpress.org/support/plugin/hide-titles/reviews/?filter=5#new-post" target="_blank">
+                <button class="button button-primary btn"><?php esc_attr_e( 'Leave a Review', 'hide-titles' ); ?></button>
+            </a>
         </div>
     </div>
+    
     <?php
-}
-
-if( get_option( 'hide-titles-option' ) == 'posts' ) {
-
-    function hide_post_titles(){
-
-        ?>
-        <style>
-            .post .entry-title {
-                display: none;
-            }
-        </style>
-        <?php
-    }
-    add_action( 'wp_head', 'hide_post_titles' );
-}
-
-if( get_option( 'hide-titles-option' ) == 'pages' ) {
-
-    function hide_page_titles(){
-
-        ?>
-        <style>
-            .page .entry-title {
-                display: none;
-            }
-        </style>
-        <?php
-    }
-    add_action( 'wp_head', 'hide_page_titles' );
 }
 
 if( get_option( 'hide-titles-option' ) == 'all' ) {
@@ -196,3 +167,48 @@ function hide_titles_plugin_redirect() {
     }
 }
 add_action( 'admin_init', 'hide_titles_plugin_redirect' );
+/*********************************************************************/
+add_action('add_meta_boxes', 'hide_titles_meta_box');
+add_action('save_post', 'hide_titles_save_meta');
+add_filter('the_title', 'hide_titles_filter_title', 10, 2);
+
+// Add meta box to hide title
+function hide_titles_meta_box() {
+    add_meta_box('hide-title-meta-box', 'Hide Titles', 'hide_titles_meta_box_callback', ['post', 'page'], 'side', 'default');
+}
+
+// Meta box callback function
+function hide_titles_meta_box_callback($post) {
+    $value = get_post_meta($post->ID, '_hide_title', true);
+    ?>
+    <label for="hide-titles-checkbox">
+        <input type="checkbox" id="hide-titles-checkbox" name="hide_titles_checkbox" <?php checked($value, 'on'); ?> />
+        Hide The Title
+    </label>
+    <br><br>
+    <p><small>This option comes from the <b>Hide Titles</b> plugin. <a href="https://wordpress.org/support/plugin/hide-titles/reviews/?filter=5#new-post"><strong>Please consider leaving a review</strong></a> to share your experience with us.</small></p>
+    <?php
+}
+
+// Save meta box data
+function hide_titles_save_meta($post_id) {
+    if (array_key_exists('hide_titles_checkbox', $_POST)) {
+        update_post_meta($post_id, '_hide_title', 'on');
+    } else {
+        delete_post_meta($post_id, '_hide_title');
+    }
+}
+
+// Filter the title to hide it
+function hide_titles_filter_title($title, $id = null) {
+    if (is_admin() || !$id) {
+        return $title;
+    }
+
+    $hide_title = get_post_meta($id, '_hide_title', true);
+    if ($hide_title === 'on') {
+        return '';
+    }
+
+    return $title;
+}
