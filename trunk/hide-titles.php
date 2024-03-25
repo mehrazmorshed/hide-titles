@@ -4,7 +4,7 @@
  * Plugin Name:         Hide Titles – Simple Hide Title Plugin, Hide Page And Post Title
  * Plugin URI:          https://wordpress.org/plugins/hide-titles/
  * Description:         Remove Titles from Posts and Single Pages on WordPress.
- * Version:             1.6.2
+ * Version:             1.6.6
  * Requires at least:   4.4
  * Requires PHP:        7.0
  * Tested up to:        6.4.3
