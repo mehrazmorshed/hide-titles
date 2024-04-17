@@ -1,1 +1,1 @@
-Turn Off Comments WordPress Plugin
+# HIDE TITLES
