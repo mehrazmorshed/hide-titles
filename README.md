@@ -1,1 +1,2 @@
 # HIDE TITLES
+WordPress Plugin
