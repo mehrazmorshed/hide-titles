@@ -1,10 +1,10 @@
-=== Hide Titles – Simple Hide Title Plugin, Hide Page And Post Title ===
+=== Hide Titles – Simple and Easy Hide Title, Hide Page And Post Title ===
 Contributors: mehrazmorshed
 Donate link: https://www.buymeacoffee.com/mehrazmorshed
-Tags: title, hide title, hide page title, hide post title, hide page and post title
+Tags: hide title, hide page title, hide post title, disable title, remove title
 Requires at least: 4.4
-Tested up to: 6.4.3
-Stable tag: 1.6.6
+Tested up to: 6.5
+Stable tag: 1.7.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,11 @@ If you are planning to launch an affiliate program for your WooCommerce store, W
 1. screenshot-1.png
 
 == Changelog ==
+
+= 1.7 =
+*Release Date - 9 April 2024*
+
+* Tested with version 6.5
 
 = 1.6 =
 *Release Date - 8 February 2024*
