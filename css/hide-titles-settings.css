@@ -196,6 +196,31 @@
 .ht-mm-actions {
 	margin: 22px 0 8px;
 }
+.ht-mm-fieldset--replacement {
+	margin-top: 18px;
+	padding-top: 16px;
+	border-top: 1px dashed var(--ht-mm-border);
+}
+.ht-mm-input-wrap {
+	align-items: center;
+	background: #f8fafc;
+	border: 1px solid var(--ht-mm-border);
+	border-radius: 10px;
+	display: flex;
+	gap: 10px;
+	max-width: 520px;
+	padding: 8px 12px;
+}
+.ht-mm-input-wrap .dashicons {
+	color: var(--ht-mm-accent);
+}
+.ht-mm-input-wrap input.regular-text {
+	border: 0;
+	box-shadow: none;
+	flex: 1;
+	margin: 0;
+	max-width: 100%;
+}
 
 .ht-mm-submit.button-hero {
 	border-radius: 8px;
@@ -230,6 +255,24 @@
 
 .ht-mm-tip__figure {
 	margin: 0;
+}
+.ht-mm-feature-list {
+	display: grid;
+	gap: 8px;
+	margin: 18px 0 0;
+}
+.ht-mm-feature-list li {
+	align-items: center;
+	background: #eff6ff;
+	border: 1px solid #bfdbfe;
+	border-radius: 999px;
+	color: #1e3a8a;
+	display: inline-flex;
+	font-size: 12px;
+	font-weight: 600;
+	gap: 6px;
+	padding: 6px 12px;
+	width: fit-content;
 }
 
 .ht-mm-tip__figure .screenshot,

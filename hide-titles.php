@@ -66,6 +66,7 @@ add_action( 'admin_enqueue_scripts', 'hide_titles_style_settings' );
 
 function hide_titles_create_page() {
     $current = get_option( 'hide-titles-option', 'nothing' );
+    $replacement = get_option( 'hide-titles-replacement', '' );
     ?>
     <div class="hide_titles_main">
         <div class="hide_titles_body hide_titles_common">
@@ -102,9 +103,17 @@ function hide_titles_create_page() {
                         </label>
                     </div>
                 </fieldset>
+                <fieldset class="ht-mm-fieldset ht-mm-fieldset--replacement">
+                    <legend class="ht-mm-fieldset__legend"><?php esc_html_e( 'Replacement title (optional)', 'hide-titles' ); ?></legend>
+                    <p class="ht-mm-fieldset__hint"><?php esc_html_e( 'When titles are hidden, show this fallback text instead. Leave blank to output an empty title.', 'hide-titles' ); ?></p>
+                    <label class="ht-mm-input-wrap" for="hide-titles-replacement">
+                        <span class="dashicons dashicons-editor-textcolor" aria-hidden="true"></span>
+                        <input type="text" class="regular-text" id="hide-titles-replacement" name="hide-titles-replacement" value="<?php echo esc_attr( $replacement ); ?>" maxlength="120" placeholder="<?php esc_attr_e( 'e.g. Featured content', 'hide-titles' ); ?>">
+                    </label>
+                </fieldset>
 
                 <input type="hidden" name="action" value="update">
-                <input type="hidden" name="page_options" value="hide-titles-option">
+                <input type="hidden" name="page_options" value="hide-titles-option,hide-titles-replacement">
 
                 <p class="ht-mm-actions">
                     <button type="submit" name="submit" class="button button-primary button-hero ht-mm-submit"><?php esc_html_e( 'Save changes', 'hide-titles' ); ?></button>
@@ -117,6 +126,11 @@ function hide_titles_create_page() {
                 <figure class="ht-mm-tip__figure">
                     <img class="screenshot" src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . 'img/single.png' ); ?>" alt="">
                 </figure>
+                <ul class="ht-mm-feature-list">
+                    <li><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span><?php esc_html_e( 'Global mode + per-page override', 'hide-titles' ); ?></li>
+                    <li><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span><?php esc_html_e( 'Optional replacement text when hidden', 'hide-titles' ); ?></li>
+                    <li><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span><?php esc_html_e( 'Menus and admin titles stay intact', 'hide-titles' ); ?></li>
+                </ul>
             </section>
         </div>
         <div class="hide_titles_aside hide_titles_common">
@@ -163,15 +177,6 @@ function hide_titles_create_page() {
     </div>
     
     <?php
-}
-
-if( get_option( 'hide-titles-option' ) == 'all' ) {
-
-    function hide_titles() {
-
-        return false;
-    }
-    add_filter('the_title', 'hide_titles');
 }
 
 function hide_titles_plugin_activation() {
@@ -249,6 +254,7 @@ function hide_titles_meta_box() {
 // Meta box callback function
 function hide_titles_meta_box_callback( $post ) {
     $value = get_post_meta( $post->ID, '_hide_title', true );
+    $replacement = get_post_meta( $post->ID, '_hide_title_replacement', true );
     wp_nonce_field( 'hide_titles_meta_save', 'hide_titles_meta_nonce' );
     ?>
     <div class="ht-mm-meta">
@@ -257,6 +263,10 @@ function hide_titles_meta_box_callback( $post ) {
             <span class="ht-mm-meta__label"><?php esc_html_e( 'Hide title on this page', 'hide-titles' ); ?></span>
         </label>
         <p class="ht-mm-meta__hint"><?php esc_html_e( 'Hides the title in the content area only. Navigation menus and the admin list keep their titles.', 'hide-titles' ); ?></p>
+        <p>
+            <label for="hide-titles-replacement-meta"><strong><?php esc_html_e( 'Replacement text (optional)', 'hide-titles' ); ?></strong></label>
+            <input type="text" id="hide-titles-replacement-meta" name="hide_titles_replacement_meta" class="widefat" value="<?php echo esc_attr( $replacement ); ?>" maxlength="120" />
+        </p>
         <p class="ht-mm-meta__review"><a href="https://wordpress.org/support/plugin/hide-titles/reviews/#new-post" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Leave a review', 'hide-titles' ); ?></a></p>
     </div>
     <?php
@@ -282,6 +292,15 @@ function hide_titles_save_meta( $post_id ) {
     } else {
         delete_post_meta( $post_id, '_hide_title' );
     }
+
+    if ( isset( $_POST['hide_titles_replacement_meta'] ) ) {
+        $replacement = sanitize_text_field( wp_unslash( $_POST['hide_titles_replacement_meta'] ) );
+        if ( '' === $replacement ) {
+            delete_post_meta( $post_id, '_hide_title_replacement' );
+        } else {
+            update_post_meta( $post_id, '_hide_title_replacement', $replacement );
+        }
+    }
 }
 
 // Filter the title to hide it
@@ -303,8 +322,12 @@ function hide_titles_filter_title( $title, $id = null ) {
     }
 
     $hide_title = get_post_meta( $id, '_hide_title', true );
-    if ( 'on' === $hide_title ) {
-        return '';
+    if ( 'on' === $hide_title || get_option( 'hide-titles-option' ) === 'all' ) {
+        $replacement = get_post_meta( $id, '_hide_title_replacement', true );
+        if ( '' === $replacement ) {
+            $replacement = get_option( 'hide-titles-replacement', '' );
+        }
+        return is_string( $replacement ) ? $replacement : '';
     }
 
     return $title;
