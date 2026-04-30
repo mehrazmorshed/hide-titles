@@ -247,8 +247,8 @@ function hide_titles_meta_box() {
 }
 
 // Meta box callback function
-function hide_titles_meta_box_callback($post) {
-    $value = get_post_meta($post->ID, '_hide_title', true);
+function hide_titles_meta_box_callback( $post ) {
+    $value = get_post_meta( $post->ID, '_hide_title', true );
     wp_nonce_field( 'hide_titles_meta_save', 'hide_titles_meta_nonce' );
     ?>
     <div class="ht-mm-meta">
@@ -263,7 +263,7 @@ function hide_titles_meta_box_callback($post) {
 }
 
 // Save meta box data
-function hide_titles_save_meta($post_id) {
+function hide_titles_save_meta( $post_id ) {
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
         return;
     }
@@ -273,6 +273,10 @@ function hide_titles_save_meta($post_id) {
     if ( ! current_user_can( 'edit_post', $post_id ) ) {
         return;
     }
+    if ( 'post' !== get_post_type( $post_id ) && 'page' !== get_post_type( $post_id ) ) {
+        return;
+    }
+
     if ( array_key_exists( 'hide_titles_checkbox', $_POST ) ) {
         update_post_meta( $post_id, '_hide_title', 'on' );
     } else {
@@ -281,13 +285,25 @@ function hide_titles_save_meta($post_id) {
 }
 
 // Filter the title to hide it
-function hide_titles_filter_title($title, $id = null) {
-    if (is_admin() || !$id) {
+function hide_titles_filter_title( $title, $id = null ) {
+    if ( is_admin() || ! $id ) {
         return $title;
     }
 
-    $hide_title = get_post_meta($id, '_hide_title', true);
-    if ($hide_title === 'on') {
+    if ( is_feed() || wp_doing_ajax() || wp_is_json_request() ) {
+        return $title;
+    }
+
+    if ( ! in_the_loop() || ! is_main_query() ) {
+        return $title;
+    }
+
+    if ( ! is_singular() ) {
+        return $title;
+    }
+
+    $hide_title = get_post_meta( $id, '_hide_title', true );
+    if ( 'on' === $hide_title ) {
         return '';
     }
 
@@ -305,9 +321,9 @@ function hide_titles_activate() {
     // Check if the installation time is already saved
     $installed = get_option('hide_titles_installed');
     
-    if (!$installed) {
+    if ( ! $installed ) {
         // Save current datetime if not already set
-        update_option('hide_titles_installed', current_time('mysql'));
+        update_option( 'hide_titles_installed', current_time( 'mysql' ) );
     }
 }
 register_activation_hook(__FILE__, 'hide_titles_activate');
@@ -316,7 +332,7 @@ register_activation_hook(__FILE__, 'hide_titles_activate');
  * Clean up options on plugin uninstallation
  */
 function hide_titles_uninstall() {
-    delete_option('hide_titles_installed');
+    delete_option( 'hide_titles_installed' );
 }
 register_uninstall_hook(__FILE__, 'hide_titles_uninstall');
 
@@ -324,8 +340,15 @@ register_uninstall_hook(__FILE__, 'hide_titles_uninstall');
  * Show migration notice for installations before Oct 30, 2025
  */
 function ht_show_migration_notice() {
+    if ( ! current_user_can( 'install_plugins' ) ) {
+        return;
+    }
+
+    if ( ! function_exists( 'is_plugin_active' ) ) {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
     // Only show if new plugin is not active
-    if (is_plugin_active('daisy-titles/daisy-titles.php')) {
+    if ( is_plugin_active( 'daisy-titles/daisy-titles.php' ) ) {
         return;
     }
     
@@ -335,26 +358,26 @@ function ht_show_migration_notice() {
     // Only show notice if:
     // 1. There is NO install date (new installation) OR
     // 2. Installation date is BEFORE Oct 30, 2025
-    if ($install_date && strtotime($install_date) >= strtotime('2025-10-30')) {
+    if ( $install_date && strtotime( $install_date ) >= strtotime( '2025-10-30' ) ) {
         return;
     }
     
     // Get install/activate URLs
     $install_url = wp_nonce_url(
-        add_query_arg([
+        add_query_arg( array(
             'action' => 'install-plugin',
             'plugin' => 'daisy-titles'
-        ], admin_url('update.php')),
+        ), admin_url( 'update.php' ) ),
         'install-plugin_daisy-titles'
     );
     
     $activate_url = '';
-    if (file_exists(WP_PLUGIN_DIR . '/daisy-titles/daisy-titles.php')) {
+    if ( file_exists( WP_PLUGIN_DIR . '/daisy-titles/daisy-titles.php' ) ) {
         $activate_url = wp_nonce_url(
-            add_query_arg([
+            add_query_arg( array(
                 'action' => 'activate',
                 'plugin' => 'daisy-titles/daisy-titles.php'
-            ], admin_url('plugins.php')),
+            ), admin_url( 'plugins.php' ) ),
             'activate-plugin_daisy-titles/daisy-titles.php'
         );
     }
@@ -362,7 +385,7 @@ function ht_show_migration_notice() {
     <div class="notice notice-error">
         <h4><?php esc_html_e('Important Notice About Hide Titles', 'hide-titles'); ?></h4>
         <p>
-            <?php _e('This plugin is no longer maintained. Please migrate to our new improved plugin <b style="color: blue;">"Daisy Titles"</b> for continued support, new features, and future updates.', 'hide-titles'); ?>
+            <?php echo wp_kses_post( __( 'This plugin is no longer maintained. Please migrate to our new improved plugin <b style="color: blue;">"Daisy Titles"</b> for continued support, new features, and future updates.', 'hide-titles' ) ); ?>
         </p>
         <p>
             <?php if ($activate_url) : ?>
